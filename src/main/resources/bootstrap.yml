@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: gugy_project
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://127.0.0.1:8848
+        group: DEFAULT_GROUP
+      config:
+        server-addr: http://127.0.0.1:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+  profiles:
+    active: dev
