@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.gugy.demo.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="org.gugy.demo.entity.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
+    <result column="id_card_number" jdbcType="VARCHAR" property="idCardNumber" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
+    <result column="modify_user" jdbcType="BIGINT" property="modifyUser" />
+    <result column="removed" jdbcType="BIT" property="removed" />
+    <result column="enabled" jdbcType="BIT" property="enabled" />
+  </resultMap>
+
+  <select id="getAllUser" resultType="org.gugy.demo.entity.vo.UserVO">
+    select
+        id,
+        user_name userName,
+        user_account userAccount,
+        phone_number phoneNumber,
+        address,
+        enabled
+    from
+        user
+    where
+        removed = 0
+    <if test="userName!=null and userName!=''">
+      and user_name like #{userName}"%"
+    </if>
+    <if test="phoneNum!=null and phoneNum!=''">
+      and phone_number like #{phoneNum}"%"
+    </if>
+  </select>
+</mapper>
